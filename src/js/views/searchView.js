@@ -40,7 +40,7 @@ export const limitRecipeTitle = (title, limit = 17) => {
             return acc + cur.length;
         }, 0);
         // return the result
-        return `${newTitle.join(' ')}...`;
+        return `${newTitle.join(' ')} ...`;
     }
     return title;
 }
@@ -80,7 +80,7 @@ const renderButtons = (page, numResults, resPerPage) => {
 
     let button;
     if (page === 1 && pages > 1) {
-        // Only button to go to the next page
+        // Button to go to the next page
         button = createButton(page, 'next');
     }else if (page < pages) {
         // Both buttons
@@ -89,7 +89,7 @@ const renderButtons = (page, numResults, resPerPage) => {
             ${createButton(page, 'next')}
         `;
     }else if (page === pages && pages > 1) {
-        // Only button to go to the prev page
+        // Button to go to the prev page
         button = createButton(page, 'prev');
     }
 

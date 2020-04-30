@@ -8,7 +8,8 @@ export default class Recipe {
 
     async getRecipe() {
         try {
-            const res = await axios(`${proxy}http://food2fork.com/api/get?key=${key}&rId=${this.id}`);
+          // const res = await axios(`${proxy}https://forkify-api.herokuapp.com/api/key=${key}&rId=${this.id}`); // API DEPRECATED
+          const res = await axios(`https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
             this.title = res.data.recipe.title;
             this.author = res.data.recipe.publisher;
             this.img = res.data.recipe.image_url;
@@ -35,6 +36,7 @@ export default class Recipe {
         const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds'];
         const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
         const units = [...unitsShort, 'kg', 'g'];
+
         const newIngredients = this.ingredients.map(el => {
             // 1.Uniform units
             let ingredient = el.toLowerCase();

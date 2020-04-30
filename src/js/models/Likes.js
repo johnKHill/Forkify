@@ -17,7 +17,7 @@ export default class Likes {
         const index = this.likes.findIndex(el => el.id === id);
         this.likes.splice(index, 1);
 
-        // Persist the data in lacalStorage
+        // Persist the data in localStorage
         this.persistData();
     }
 

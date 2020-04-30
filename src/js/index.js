@@ -11,15 +11,17 @@ import { elements, renderLoader, clearLoader } from './views/base';
 
 
 /** Global state of the app
+ * ---------------------------
 * - Search object
 * - Current recipe object
-* - Shopping list object
+* - Shopping List object
 * - Liked recipes
 */
 const state = {};
 
-
+// --------------------------------------------------------------------------------------
 /* SEARCH CONTROLLER */
+// --------------------------------------------------------------------------------------
 const controlSearch = async () => {
     // 1. Get the query from the view
     const query = searchView.getInput();
@@ -62,7 +64,9 @@ elements.searchResPages.addEventListener('click', e => {
 });
 
 
+// --------------------------------------------------------------------------------------
 /* RECIPE CONTROLLER */
+// --------------------------------------------------------------------------------------
 const controlRecipe = async () => {
     // Get ID from url
     const id = window.location.hash.replace('#', '');
@@ -105,7 +109,9 @@ const controlRecipe = async () => {
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
 
+// ---------------------------------------------------------------------------------------
 /* LIST CONTROLLER */
+// ---------------------------------------------------------------------------------------
 const controlList = () => {
     // Create a new list IF there in none yet
     if (!state.list) state.list = new List();
@@ -131,19 +137,21 @@ elements.shopping.addEventListener('click', e => {
         listView.deleteItem(id)
 
     // Handle the count update
-    }else if (e.target.matches('.shopping__count-value')) {
+    } else if (e.target.matches('.shopping__count-value')) {
         const val = parseFloat(e.target.value, 10);
         state.list.updateCount(id, val);
     }
 });
 
 
+// ---------------------------------------------------------------------------------------
 /* Like CONTROLLER */
+// ---------------------------------------------------------------------------------------
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
     const currentID = state.recipe.id;
 
-    // User has not yet liked a current recipe
+    // User has NOT yet liked a current recipe
     if (!state.likes.isLiked(currentID)) {
         // Add like to the state
         const newLike = state.likes.addLike(
